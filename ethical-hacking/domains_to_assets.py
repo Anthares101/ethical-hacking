@@ -1,5 +1,8 @@
 # Python 3 requirements: IPy, json, progressbar2
 # Apt requirements: dnsutils
+#
+# Just something to resolve all domains and subdomains found during the discovery phase and have the results in a fancy JSON format. The script
+# also splits domains into domains only available in the internal network and public ones (Domains with no records are filtered out).
 
 import json, subprocess, progressbar, sys, argparse
 from IPy import IP
