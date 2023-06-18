@@ -1,4 +1,4 @@
-# Utilily scripts
+# Utility scripts
 
 ## What is this?
 
