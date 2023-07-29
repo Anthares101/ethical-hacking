@@ -15,7 +15,7 @@ def brute(chunked_guess_chars, found_code):
 			break
 
 		guess_code = f"static-part-{guess_chars}"
-		data = {}
+		data = {"code": guess_code}
 
 		# Make sure requests are repeated on failure
 		while True:
