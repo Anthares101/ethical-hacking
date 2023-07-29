@@ -8,6 +8,9 @@ from itertools import product
 url = "https://localhost"
 cookies = {}
 headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"}
+brute_lenth = 5
+charset = string.ascii_uppercase
+process_count = multiprocessing.cpu_count() * 2
 
 def brute(chunked_guess_chars, found_code):
 	for guess_chars in progressbar.progressbar(chunked_guess_chars):
@@ -30,10 +33,9 @@ def brute(chunked_guess_chars, found_code):
 # Prepare guesses in chunks
 indexed_guess_chars = []
 chunked_guess_chars = []
-brute_lenth = 5
-chunk_size = round(pow(len(string.ascii_uppercase), brute_lenth) / (multiprocessing.cpu_count() * 2))
+chunk_size = round(pow(len(charset), brute_lenth) / process_count)
 
-for guess_chars in product(string.ascii_uppercase, repeat=brute_lenth):
+for guess_chars in product(charset, repeat=brute_lenth):
 	chunked_guess_chars.append(''.join(guess_chars))
 	if len(chunked_guess_chars) >= chunk_size:
 		indexed_guess_chars.append(chunked_guess_chars)
