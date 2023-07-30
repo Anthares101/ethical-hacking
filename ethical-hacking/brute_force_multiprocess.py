@@ -1,3 +1,5 @@
+# A little script exploring brute force with multiprocessing
+
 import requests
 import string
 import multiprocessing
