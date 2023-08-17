@@ -37,7 +37,9 @@ try:
 		ips_and_domains = asset.split(',')
 		ips = ''
 		for ip_or_domain in ips_and_domains:
-			if not re.search('[a-zA-Z]', ip_or_domain):
+			ipv4_regex = '^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$'
+			ipv6_regex = '((([0-9a-fA-F]){1,4})\\:){7}([0-9a-fA-F]){1,4}'
+			if re.search(ipv4_regex, ip_or_domain) or re.search(ipv6_regex, ip_or_domain):
 				if ips:
 					ips = ips + ','
 				ips = ips + ip_or_domain
