@@ -62,7 +62,7 @@ if xlsx_file:
 
 for tld in parsed_dict.keys():
 	domains_and_ips = parsed_dict[tld]
-	print(tabulate(domains_and_ips, headers=[tld], tablefmt='fancy_grid'))
+	print(tabulate(domains_and_ips, headers=[tld], tablefmt='github'))
 	print()
 
 	if workbook:
