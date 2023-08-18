@@ -1,4 +1,4 @@
-# Python 3 requirements: IPy, json, progressbar2
+# Python 3 requirements: IPy, progressbar2
 # Apt requirements: dnsutils
 #
 # Just something to resolve all domains and subdomains found during the discovery phase and have the results in a fancy JSON format. The script

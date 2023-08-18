@@ -1,4 +1,4 @@
-# Python 3 requirements: json
+# Python 3 requirements: Nothing special!
 #
 # A little auxiliary script for domains_to_assets.py output, will read the JSON and return just a list of domains. You can add discovered IP blocks to the list too.
 

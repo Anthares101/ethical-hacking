@@ -1,4 +1,4 @@
-# Python 3 requirements: json, xlsxwriter
+# Python 3 requirements: xlsxwriter
 #
 # Script to read the domains_to_assets.py JSON output and return a pretty print of it.
 
