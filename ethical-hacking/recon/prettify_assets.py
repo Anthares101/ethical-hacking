@@ -1,6 +1,6 @@
 # Python 3 requirements: json, xlsxwriter
 #
-# A little auxiliary script for domains_to_assets.py output, will read the JSON and return a pretty print of it.
+# Script to read the domains_to_assets.py JSON output and return a pretty print of it.
 
 import json
 import collections
@@ -54,32 +54,35 @@ except:
 	exit()
 
 # Pretty print and XLSX generation if needed
-workbook = None
-if xlsx_file:
-	if os.path.exists(xlsx_file):
-  		os.remove(xlsx_file)
-	workbook = xlsxwriter.Workbook(xlsx_file)
+try:
+	workbook = None
+	if xlsx_file:
+		if os.path.exists(xlsx_file):
+	  		os.remove(xlsx_file)
+		workbook = xlsxwriter.Workbook(xlsx_file)
 
-for tld in parsed_dict.keys():
-	domains_and_ips = parsed_dict[tld]
-	print(tabulate(domains_and_ips, headers=[tld], tablefmt='github'))
-	print()
+	for tld in parsed_dict.keys():
+		domains_and_ips = parsed_dict[tld]
+		print(tabulate(domains_and_ips, headers=[tld], tablefmt='github'))
+		print()
+
+		if workbook:
+			worksheet = workbook.add_worksheet(tld)
+			cell_format = workbook.add_format({'bg_color': '#0070c0', 'font_color': 'white'})
+			worksheet.write(0, 0, tld, cell_format)
+			worksheet.write(0, 1, '', cell_format)
+			worksheet.write(0, 2, '', cell_format)
+
+			row = 1
+			cell_format = workbook.add_format({'bg_color': '#b4c6e7'})
+			for domain_and_ip in domains_and_ips:
+				worksheet.write(row, 0, domain_and_ip[0], cell_format)
+				worksheet.write(row, 1, domain_and_ip[1], cell_format)
+				worksheet.write(row, 2, '', cell_format)
+				row+=1
+			worksheet.autofit()
 
 	if workbook:
-		worksheet = workbook.add_worksheet(tld)
-		cell_format = workbook.add_format({'bg_color': '#0070c0', 'font_color': 'white'})
-		worksheet.write(0, 0, tld, cell_format)
-		worksheet.write(0, 1, '', cell_format)
-		worksheet.write(0, 2, '', cell_format)
-
-		row = 1
-		cell_format = workbook.add_format({'bg_color': '#b4c6e7'})
-		for domain_and_ip in domains_and_ips:
-			worksheet.write(row, 0, domain_and_ip[0], cell_format)
-			worksheet.write(row, 1, domain_and_ip[1], cell_format)
-			worksheet.write(row, 2, '', cell_format)
-			row+=1
-		worksheet.autofit()
-
-if workbook:
-	workbook.close()
+		workbook.close()
+except:
+	print('Error trying to save XLSX file!')
