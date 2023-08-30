@@ -5,6 +5,7 @@
 import json
 import argparse
 import ipaddress
+import re
 
 
 parser = argparse.ArgumentParser(
@@ -38,7 +39,7 @@ try:
 
 		for ip_to_filter in ips_to_filter:
 			for ip in ipaddress.IPv4Network(ip_to_filter, False):
-				if(not any(str(ip) in key for key in assets)):
+				if(not any(re.search(f'{str(ip)}$',key) or re.search(f'{str(ip)},',key) for key in assets)):
 					ips_to_print.add(str(ip))
 except:
 	print('Error processing IPs!')
