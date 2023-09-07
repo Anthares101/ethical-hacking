@@ -67,7 +67,10 @@ try:
 		print()
 
 		if workbook:
-			worksheet = workbook.add_worksheet(tld)
+			title = tld
+			if(len(title) > 31): # Excel limitation
+				title = f'{title[28:]}...'
+			worksheet = workbook.add_worksheet(title)
 			cell_format = workbook.add_format({'bg_color': '#0070c0', 'font_color': 'white'})
 			worksheet.write(0, 0, tld, cell_format)
 			worksheet.write(0, 1, '', cell_format)
