@@ -1,0 +1,13 @@
+# Usage: nuclei -l targets.txt -w custom-full-scan-workflow.yaml -o nuclei.out
+
+id: custom-full-scan-workflow
+info:
+  name: Use all nuclei templates I consider interesting
+  author: Anthares101
+workflows:
+- template: ssl/mismatched-ssl-certificate.yaml
+- template: ssl/revoked-ssl-certificate.yaml
+- template: ssl/weak-cipher-suites.yaml
+- template: ssl/expired-ssl.yaml
+- template: ssl/untrusted-root-certificate.yaml
+- tags: cve,panel,exposure,xss,osint,tech,lfi,misconfig,file,sqli,default-login,detect,network,ssrf,misc
