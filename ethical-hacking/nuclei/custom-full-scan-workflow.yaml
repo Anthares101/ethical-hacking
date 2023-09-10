@@ -10,4 +10,4 @@ workflows:
 - template: ssl/weak-cipher-suites.yaml
 - template: ssl/expired-ssl.yaml
 - template: ssl/untrusted-root-certificate.yaml
-- tags: cve,panel,exposure,xss,tech,misconfig,file,sqli,default-login,detect,network,ssrf,misc
+- tags: cve,panel,exposure,xss,tech,misconfig,file,sqli,default-login,detect,ssrf,misc
