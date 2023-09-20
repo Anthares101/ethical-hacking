@@ -1,5 +1,7 @@
-#!/usr/bin/env python3
 # Oracle specific for now, works pretty well alongside space2comment
+
+#!/usr/bin/env python3
+
 from lib.core.enums import PRIORITY
 import re
 
