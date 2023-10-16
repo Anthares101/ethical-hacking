@@ -38,7 +38,7 @@ try:
 			ips_to_filter = ips_file_dc.read().splitlines()
 
 		for ip_to_filter in ips_to_filter:
-			for ip in ipaddress.IPv4Network(ip_to_filter, False):
+			for ip in ipaddress.ip_network(ip_to_filter, False):
 				if(not any(re.search(f'{str(ip)}$',key) or re.search(f'{str(ip)},',key) for key in assets)):
 					ips_to_print.add(str(ip))
 except:
