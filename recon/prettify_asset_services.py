@@ -34,7 +34,7 @@ asset_dict = {}
 if(shodan_file):
 	try:
 		shodan_result = subprocess.run(
-			['shodan', 'parse', '--fields', 'ip_str,port', '--separator', ',', shodan_file], stdout=subprocess.PIPE
+			['shodan', 'parse', '--fields', 'ip_str,port,transport', '--separator', ',', shodan_file], stdout=subprocess.PIPE
 		)
 		raw_list = shodan_result.stdout.decode().strip().split('\n')
 
@@ -47,7 +47,7 @@ if(shodan_file):
 				asset_dict[raw_element_split[0]]['ports'] = []
 				asset_dict[raw_element_split[0]]['domains'] = []
 
-			asset_dict[raw_element_split[0]]['ports'].append(f'{raw_element_split[1]}/tcp')
+			asset_dict[raw_element_split[0]]['ports'].append(f'{raw_element_split[1]}/{raw_element_split[2]}')
 	except:
 		print('Error parsing Shodan file!')
 		exit()
@@ -69,8 +69,9 @@ if(nmap_file):
 					for port in host['ports']['port']:
 						if(
 							not isinstance(port,str) and 
-							not f'{port["@portid"]}/tcp' in asset_dict[host['address']['@addr']]['ports']):
-							asset_dict[host['address']['@addr']]['ports'].append(f'{port["@portid"]}/tcp')
+							port['state']['@state'] == 'open' and
+							not f'{port["@portid"]}/{port["@protocol"]}' in asset_dict[host['address']['@addr']]['ports']):
+							asset_dict[host['address']['@addr']]['ports'].append(f'{port["@portid"]}/{port["@protocol"]}')
 	except:
 		print('Error parsing Nmap file!')
 		exit()
