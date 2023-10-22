@@ -26,7 +26,7 @@ with open(input_file) as domains_file:
 
 resolved_domains = []
 for file_line in progressbar.progressbar(file_lines):
-	dig_result = subprocess.run(['/usr/bin/dig', '+short', '+tries=2', '+time=4', file_line.strip()], stdout=subprocess.PIPE)
+	dig_result = subprocess.run(['/usr/bin/dig', '+short', '+tries=2', '+time=4', file_line.strip().replace('-', '\-')], stdout=subprocess.PIPE)
 	if(dig_result.stdout):
 		dig_result_list = dig_result.stdout.decode().strip().split('\n')
 		dig_result_list.sort()
