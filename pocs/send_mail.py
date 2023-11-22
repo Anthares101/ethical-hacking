@@ -38,10 +38,10 @@ for filename in files:
 try:
     server = smtplib.SMTP('192.168.0.23:25')
 		
-		# Start TLS tunnel
-		# server.starttls()
+    # Start TLS tunnel
+    # server.starttls()
 
-		# Login if needed
+    # Login if needed
     # server.login('it@example.com', '1234')
 
     server.sendmail(fromaddr, toaddr, msg.as_string())
