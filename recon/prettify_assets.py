@@ -81,7 +81,7 @@ try:
                 for index, domains_and_ips_row in enumerate(domains_and_ips):
                         domains_and_ips_row.append(f'<input type="checkbox" unchecked id="{domains_and_ips_row[0]}_{index}">')
                 
-                print(tabulate(domains_and_ips, headers=[tld], tablefmt='github'))
+                print(tabulate(domains_and_ips, headers=[tld], tablefmt='github').replace(',','<br />'))
                 print()
 
                 if workbook:
