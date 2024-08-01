@@ -1,7 +1,7 @@
-# A little script to exploit a simple SQL injection on a Oracle database using XML funtions to bypass security mechanisms
+# A little script to exploit a simple SQL injection on a Oracle database using XML funtions to bypass security mechanisms. The retrieved data will be case insensitive!
+# Reference: https://mahmoudsec.blogspot.com/2023/02/sql-injection-utilizing-xml-functions.html
 
 import requests
-import time
 
 
 s = "abcdefghijklmnopqrstuvwxyz0123456789_-@$#/." # charlist
